@@ -1,4 +1,4 @@
-1.0.1 (unreleased)
+1.0.1 (2017-08-30)
 ------------------
 
 - Be able to customize statsd key prefix
