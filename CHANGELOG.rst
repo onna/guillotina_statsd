@@ -1,7 +1,8 @@
 1.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Be able to customize statsd key prefix
+  [vangheem]
 
 
 1.0.0 (2017-08-10)
