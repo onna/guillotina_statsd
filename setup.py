@@ -7,7 +7,7 @@ except IOError:
 
 setup(
     name='guillotina_statsd',
-    version='1.0.2.dev0',
+    version='1.0.2',
     description='Integrate statsd into guillotina',
     long_description=README,
     install_requires=[

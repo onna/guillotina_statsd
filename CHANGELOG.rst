@@ -1,4 +1,4 @@
-1.0.2 (unreleased)
+1.0.2 (2017-08-31)
 ------------------
 
 - Use dot for prefixes on the keys
