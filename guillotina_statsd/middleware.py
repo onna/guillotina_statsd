@@ -24,7 +24,7 @@ class Middleware:
             return await self._handler(request)
 
     async def instrument(self, request):
-        timer_key = f'{self._prefix}_processing'
+        timer_key = f'{self._prefix}.processing'
         with self._client.timer(timer_key):
             resp = await self._handler(request)
 
