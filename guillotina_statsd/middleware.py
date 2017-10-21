@@ -1,10 +1,43 @@
 from guillotina import app_settings
 from guillotina.utils import get_dotted_name
 
+import contextlib
 import logging
+import time
 
 
 logger = logging.getLogger('guillotina_statsd')
+
+
+class StatsdRequestTimer:
+    done = False
+
+    def __init__(self, name, client):
+        self.client = client
+        self.start_time = time.time()
+        self.done = False
+
+    def record(self, name):
+        if self.done:
+            return
+        self.send_data(name)
+
+    def send_data(self, sub_name=None):
+        name = self.name
+        if sub_name is not None:
+            name = name + '.' + sub_name
+        duration_sec = time.time() - self.start_time
+        # time.time() returns seconds; we need msec
+        duration_msec = int(round(duration_sec * 1000))
+        self.client.send_timer(name, duration_msec)
+
+    @contextlib.contextmanager
+    def __call__(self):
+        try:
+            yield
+        finally:
+            self.send_data()
+            self.done = True
 
 
 class Middleware:
@@ -25,7 +58,9 @@ class Middleware:
 
     async def instrument(self, request):
         timer_key = f'{self._prefix}.processing'
-        with self._client.timer(timer_key):
+        timer = StatsdRequestTimer(timer_key, self._client)
+        request._timer = timer
+        with timer:
             resp = await self._handler(request)
 
         try:
