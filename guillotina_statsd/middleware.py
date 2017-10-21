@@ -61,7 +61,7 @@ class Middleware:
         timer_key = f'{self._prefix}.processing'
         timer = StatsdRequestTimer(timer_key, self._client)
         request._timer = timer
-        with timer:
+        with timer():
             resp = await self._handler(request)
 
         try:
