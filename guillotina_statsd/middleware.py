@@ -13,6 +13,7 @@ class StatsdRequestTimer:
     done = False
 
     def __init__(self, name, client):
+        self.name = name
         self.client = client
         self.start_time = time.time()
         self.done = False
