@@ -1,4 +1,4 @@
-1.0.3 (unreleased)
+1.0.3 (2017-10-23)
 ------------------
 
 - Do not swallow errors from handler, only stats
