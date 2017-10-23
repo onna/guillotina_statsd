@@ -1,7 +1,8 @@
 1.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Do not swallow errors from handler, only stats
+  [vangheem]
 
 
 1.0.2 (2017-08-31)
