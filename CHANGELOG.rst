@@ -1,4 +1,4 @@
-1.0.4 (unreleased)
+1.0.4 (2017-11-14)
 ------------------
 
 - Use latest guillotina request tracing
