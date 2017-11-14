@@ -1,7 +1,8 @@
 1.0.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Use latest guillotina request tracing
+  [vangheem]
 
 
 1.0.3 (2017-10-23)

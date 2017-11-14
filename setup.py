@@ -1,4 +1,6 @@
-from setuptools import find_packages, setup
+from setuptools import find_packages
+from setuptools import setup
+
 
 try:
     README = open('README.rst').read()
@@ -11,7 +13,7 @@ setup(
     description='Integrate statsd into guillotina',
     long_description=README,
     install_requires=[
-        'guillotina',
+        'guillotina>=2.1.5',
         'aiostatsd'
     ],
     author='Nathan Van Gheem',

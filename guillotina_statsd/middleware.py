@@ -18,8 +18,13 @@ class Middleware:
 
     async def __call__(self, request):
         timer_key = f'{self._prefix}.processing'
-        with self._client.timer(timer_key):
-            resp = await self._handler(request)
+        resp = await self._handler(request)
+        try:
+            duration_sec = request.events['finish'] - request.events['start']
+            duration_msec = int(round(duration_sec * 1000))
+            self._client.send_timer(timer_key, duration_msec)
+        except (AttributeError, KeyError):
+            pass
 
         try:
             try:
@@ -34,6 +39,7 @@ class Middleware:
             self._client.incr(f".{key}.request")
             self._client.incr(f".{key}.{request.method}")
             self._client.incr(f".{key}.{resp.status}")
+            self._client.send_timer(f".{key}.{request.method}", duration_msec)
         except:
             logger.warn('Error instrumenting code for statsd...', exc_info=True)
 
