@@ -1,7 +1,8 @@
 1.0.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix async util import
+  [vangheem]
 
 
 1.0.4 (2017-11-14)

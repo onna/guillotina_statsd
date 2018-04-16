@@ -1,8 +1,15 @@
+from aiostatsd.client import StatsdClient
+from guillotina import app_settings
+from guillotina import configure
+
 import asyncio
 
-from aiostatsd.client import StatsdClient
-from guillotina import app_settings, configure
-from guillotina.async import IAsyncUtility
+
+try:
+    from guillotina.async_util import IAsyncUtility
+except ImportError:
+    from guillotina.async import IAsyncUtility
+
 
 
 class IStatsdUtility(IAsyncUtility):
